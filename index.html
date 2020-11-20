@@ -1,0 +1,137 @@
+﻿<!doctype html>
+<html lang="en">
+
+<!-- 
+        Author: Ethan Justice
+-->       
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, intiial-scale=1">
+    <title>Matchmaker Web</title>
+    <link rel="stylesheet" href="mathcmakerweb.css">
+</head>  
+<body>
+    <h1 style="color: #20201E;text-align: left; background-color: turquoise; padding: 30px ; font-size: xx-large;">Mathcmaker Web</h1>
+
+    <p style="color: black;font-size: larger;font-family: 'Times New Roman', Times, serif;"> Insturctions: Answer each question using the drop down tabs.</p>
+    <br>
+
+    <label style="color: black;font-size: large;font-family: 'Times New Roman', Times, serif;">Dogs are the best pets</label><br>
+    <select id="q1">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neutral</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br><br>
+
+    <label style="color: black;font-size: large;font-family: 'Times New Roman', Times, serif;">Video Games are cool</label><br>
+    <select id="q2">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neutral</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br><br>
+
+    <label style="color: black;font-size: large;font-family: 'Times New Roman', Times, serif;">2020=Best Year</label><br>
+    <select id="q3">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neutral</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br><br>
+
+    <label style="color: black;font-size: large;font-family: 'Times New Roman', Times, serif;">Marvel is awesome</label><br>
+    <select id="q4">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neutral</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br><br>
+
+    <label style="color: black;font-size: large;font-family: 'Times New Roman', Times, serif;">Iphones are the best</label><br>
+    <select id="q5">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neutral</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br><br>
+
+
+        <button onclick="calculateCompatibility()">Calculate Compatbility</button>
+        <P id="compatibility"></P>
+        
+        <script>
+
+        function calculateCompatibility() {
+
+            const DESIRED_RESPONSE = 
+            [5,5,1,5,4]
+
+            const MAX_SCORE = 25;
+
+            //Get Values for the dropdown
+            let question1Response = document.getElementById('q1').selectedOptions[0].value;
+            let question2Response = document.getElementById('q2').selectedOptions[0].value;
+            let question3Response = document.getElementById('q3').selectedOptions[0].value;
+            let question4Response = document.getElementById('q4').selectedOptions[0].value;
+            let question5Response = document.getElementById('q5').selectedOptions[0].value;
+
+
+            //Calculate Compatibility
+            let question1compatibily = 5 -Math.abs(question1Response - DESIRED_RESPONSE[0]);
+            let question2compatibily = 5 -Math.abs(question2Response - DESIRED_RESPONSE[1]);
+            let question3compatibily = 5 -Math.abs(question3Response - DESIRED_RESPONSE[2]);
+            let question4compatibily = 5 -Math.abs(question4Response - DESIRED_RESPONSE[3]);
+            let question5compatibily = 5 -Math.abs(question5Response - DESIRED_RESPONSE[4]);
+
+
+            //Total Compatibility
+            let totalCompatibility = question1compatibily + question2compatibily + question3compatibily + question4compatibily + question5compatibily;
+
+            //Converting Compatibility to Percent
+            totalCompatibility *= 100 / MAX_SCORE;
+            totalCompatibility = Math.round(totalCompatibility);
+
+
+
+            document.getElementById("compatibility").innerHTML= "Your Compatibility is..."+ totalCompatibility+"%";
+
+            }
+        
+        
+/*
+            if (totalCompatibility>20){
+                userResponse+="<3"
+            }
+            else if (totalCompatibility>65){
+                userResponse+=""
+            }
+            else if (totalCompatibility>45){
+                userResponse+=""
+            }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </script>
+        </body>
+        </html>
